@@ -1,32 +1,17 @@
 package com.example.foodscanner;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.content.AsyncTaskLoader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -144,11 +129,6 @@ public class Results extends AppCompatActivity {
 //            MyAdapter historyAdapter = new MyAdapter(Results.this, hs1,hs2,hs3,hs4,hs5,hs6,himages);
 //            history.setAdapter(historyAdapter);
 //            history.setLayoutManager(new LinearLayoutManager(Results.this));
-
-
-
-
-
 
         }
     }

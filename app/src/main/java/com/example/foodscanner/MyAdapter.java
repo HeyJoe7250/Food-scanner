@@ -1,32 +1,31 @@
 package com.example.foodscanner;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     List<Product> products;
+    List<Product> favourites;
 
     Context context;
 
     public MyAdapter(Context ct, List<Product> p){
         context = ct;
         products = p;
-
 
     }
 
@@ -45,14 +44,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.myText3.setText("FAT: " + products.get(position).getFat() + "g");
         holder.myText4.setText("SALT: " + products.get(position).getSalt() + "g");
         holder.myText5.setText("ENERGY: " + products.get(position).getEnergy() + "kJ");
-        holder.myText6.setText("SODIUM" + products.get(position).getSodium() + "g");
+        holder.myText6.setText("SODIUM: " + products.get(position).getSodium() + "g");
         Picasso.with(context).load(products.get(position).getImageUrl()).into(holder.myImage);
-
     }
 
     @Override
     public int getItemCount() {
-
         return products.size();
     }
 
@@ -60,6 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         TextView myText1, myText2, myText3, myText4, myText5, myText6;
         ImageView myImage;
+        ImageButton fav;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,7 +67,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             myText4 = itemView.findViewById(R.id.myText4);
             myText5 = itemView.findViewById(R.id.myText5);
             myText6 = itemView.findViewById(R.id.myText6);
-            myImage = itemView.findViewById(R.id.imageView2);
+            myImage = itemView.findViewById(R.id.image);
+            fav = itemView.findViewById(R.id.fav);
+
+            fav.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        Context context = MyAdapter.this.context.getApplicationContext();
+                        CharSequence text  = products.get(position).getName();
+                        int dur = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, dur);
+                        toast.show();
+                    }
+                }
+            });
         }
     }
 }
